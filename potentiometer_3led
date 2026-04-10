@@ -1,0 +1,43 @@
+int potPin = A1;        
+int greenLED = 2;      
+int redLED = 4;
+int yellowLED =7;
+
+void setup() {
+  pinMode(greenLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
+  Serial.begin(9600);   
+}
+
+void loop() {
+  int value = analogRead(potPin);
+  Serial.print("POT value = ");
+  Serial.println(value);            
+
+  if (value < 100) {
+    digitalWrite(greenLED, HIGH);
+    Serial.println("green ON");
+    digitalWrite(redLED, LOW);     
+  } else if(value>200&& value<300) {
+    digitalWrite(greenLED, LOW);
+        Serial.println("red ON");
+
+    digitalWrite(redLED, HIGH); 
+  }
+  else if(value<300&&value>100)
+    
+ {
+    digitalWrite(yellowLED, HIGH);
+        Serial.println("yellow ON");
+
+    digitalWrite(yellowLED, HIGH); 
+  }
+  else{
+     digitalWrite(greenLED, LOW);
+    digitalWrite(redLED, LOW);
+    digitalWrite(yellowLED, LOW);
+     Serial.println("ALL  LEDS ARE OFF");
+   }
+    
+  delay(100);   
+}
